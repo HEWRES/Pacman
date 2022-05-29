@@ -24,6 +24,7 @@
 </body>
 </html>
 <?php
+session_start();
     if(isset($_POST["login"]) && isset($_POST["password"]))
     {
         if($_POST["login"] != "" && $_POST["password"] != "")
@@ -37,17 +38,15 @@
                 $hash = $row["password"];
                 if($login == $row["login"] && password_verify($password, $hash))
                 {
-                    //dopisać sesje "zalogowany"
-                    header("location: main.php");
-                }
-                else{
-                    echo "Error";
+                    $query2 = mysqli_query($baza, "SELECT users.nick FROM users WHERE users.login = '$login' AND users.password = '$hash';");
+                    $user = mysqli_fetch_assoc($query2);
+                    $name = $user["nick"];
+                    $_SESSION["zalogowany"] = true;
+                    $_SESSION["nick"] = $name;
+                    header("location: welcome.php");
                 }
             }
         }
-        else
-        {
             echo "<div style='width:150px; height:90px; margin:auto; margin-top:-120px; text-align:center;'><h1 style='color:red; font-size:40px;'>". "Error". "</h1></div>";
-        }
     }
 ?>

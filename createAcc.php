@@ -26,6 +26,7 @@
 </body>
 </html>
 <?php
+session_start();
     if(isset($_POST["login"]) && isset($_POST["password"]) && isset($_POST["username"]))
     {
         if($_POST["login"] != "" && $_POST["password"] != "" && $_POST["username"] != "")
@@ -35,7 +36,10 @@
             $username = $_POST["username"];
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $baza = mysqli_connect("localhost", "root", "", "pacmandata");
-            $insert = mysqli_query($baza, "INSERT INTO users (nick, login, password) VALUES ('$username', '$login', '$hash');");
+            mysqli_query($baza, "INSERT INTO users (nick, login, password) VALUES ('$username', '$login', '$hash');");
+            $_SESSION["zalogowany"] = true;
+            $_SESSION["nick"] = $username;
+            header("location: welcome.php");
         }
         else
         {
