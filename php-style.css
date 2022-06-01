@@ -11,7 +11,7 @@ body {
 div#main{
     background-color: black;
     width: 550px;
-    height: 700px;
+    height: 750px;
     margin:auto;
     margin-top: 100px;
     border-radius: 40px;
@@ -19,9 +19,10 @@ div#main{
     padding: 3px;
 }
 img#pacman1, #pacman2{
-    position:absolute;
+    position: absolute;
     width: 150px;
     height: 150px;
+    z-index: -1;
 }
 img#pacman1{
     left:1175px;
@@ -29,7 +30,7 @@ img#pacman1{
 }
 img#pacman2{
     left:597px;
-    top: 700px;
+    top: 750px;
 }
 h1#h1{
     color: white;
@@ -42,8 +43,7 @@ p#txt{
     font-size: 25px;
     margin-left: 50px;
 }
-input#login, #password, 
-input#width, #height {
+input#login, #password, #username{
     margin-left: 50px;
     height: 55px;
     width: 400px;
@@ -54,17 +54,16 @@ input#width, #height {
     border: none;
     transition: 0.5s;
 }
-input#login:focus, #password:focus,
-input#width:focus, #height:focus {
+input#login:focus, #password:focus, #username:focus{
     outline: none;
     background-color: rgb(69, 69, 69);
     transition: 0.5s;
 }
-#btn{
+input#btn{
     width: 180px;
     height: 70px;
     margin-left: 185px;
-    margin-top: 150px;
+    margin-top: 110px;
     border-radius: 6px;
     cursor: pointer;
     color: white;
@@ -73,7 +72,16 @@ input#width:focus, #height:focus {
     transition: 0.5s;
     text-shadow: 0 0 5px black;
 }
-#btn:hover{
+input#btn:hover{
     background-color: yellow;
+    transition: 0.5s;
+}
+a#link{
+    color: blue;
+    font-size: 22px;
+    transition: 0.5s;
+}
+a#link:hover{
+    color: yellow;
     transition: 0.5s;
 }

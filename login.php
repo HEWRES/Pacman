@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="icon" href="icon.png">
-    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="icon" href="images/player_right.png">
+    <link rel="stylesheet" type="text/css" href="php-style.css">
 </head>
 <body>
-    <img src="pacman1.png" id="pacman1">
-    <img src="pacman2.png" id="pacman2">
+    <img src="images/pacman1.png" id="pacman1">
+    <img src="images/pacman2.png" id="pacman2">
     <div id="main">
         <h1 id="h1">Login Here</h1>
         <form method="POST">
@@ -18,6 +18,7 @@
             <input type="text" placeholder="Enter your login here" name="login" id="login">
             <p id="txt">Password</p>
             <input type="password" placeholder="Enter your password here" name="password" id="password">
+            <div style="margin-top:55px; margin-left:50px;"><span style="color:white; font-size:20px;">You don't have account yet? </span><a href="createAcc.php" id="link">Create one here.</a></div>
             <input type="submit" value="Login" id="btn">
         </form>
     </div>
@@ -31,14 +32,14 @@ session_start();
         {
             $login = $_POST["login"];
             $password = $_POST["password"];
-            $baza = mysqli_connect("localhost", "root", "", "pacmandata");
-            $query = mysqli_query($baza, "SELECT login, password FROM users;");
+            include 'database.php';
+            $query = mysqli_query($base, "SELECT login, password FROM users;");
             while($row = mysqli_fetch_assoc($query))
             {
                 $hash = $row["password"];
                 if($login == $row["login"] && password_verify($password, $hash))
                 {
-                    $query2 = mysqli_query($baza, "SELECT users.nick FROM users WHERE users.login = '$login' AND users.password = '$hash';");
+                    $query2 = mysqli_query($base, "SELECT users.nick FROM users WHERE users.login = '$login' AND users.password = '$hash';");
                     $user = mysqli_fetch_assoc($query2);
                     $name = $user["nick"];
                     $_SESSION["zalogowany"] = true;

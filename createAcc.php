@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create account</title>
-    <link rel="icon" href="icon.png">
-    <link rel="stylesheet" type="text/css" href="createAcc.css">
+    <link rel="icon" href="images/player_right.png">
+    <link rel="stylesheet" type="text/css" href="php-style.css">
 </head>
 <body>
-    <img src="pacman1.png" id="pacman1">
-    <img src="pacman2.png" id="pacman2">
+    <img src="images/pacman1.png" id="pacman1">
+    <img src="images/pacman2.png" id="pacman2">
     <div id="main">
         <h1 id="h1">Sign Up Here</h1>
         <form method="POST">
@@ -20,6 +20,7 @@
             <input type="text" placeholder="Enter your username here" name="username" id="username">
             <p id="txt">Password</p>
             <input type="password" placeholder="Enter your password here" name="password" id="password">
+            <div style="margin-top:35px; position:absolute; margin-left:50px;"><span style="color:white; font-size:20px;">You already have account? </span><a href="login.php" id="link">Log in here.</a></div>
             <input type="submit" value="Sign up" id="btn">
         </form>
     </div>
@@ -35,8 +36,9 @@ session_start();
             $password = $_POST["password"];
             $username = $_POST["username"];
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            $baza = mysqli_connect("localhost", "root", "", "pacmandata");
-            mysqli_query($baza, "INSERT INTO users (nick, login, password) VALUES ('$username', '$login', '$hash');");
+            include 'database.php';
+
+            mysqli_query($base, "INSERT INTO users (nick, login, password) VALUES ('$username', '$login', '$hash');");
             $_SESSION["zalogowany"] = true;
             $_SESSION["nick"] = $username;
             header("location: welcome.php");
