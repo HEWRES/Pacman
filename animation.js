@@ -28,13 +28,11 @@ function loop()
         {
             pacman1.remove();
             pacman2.remove();
-            console.log("done");
             clearInterval(interval);
             spawn();
         }
         else
         {
-            console.log(opacity);
             pacman1Pos += 1;
             pacman2Pos -= 1;
             pacman1.style.setProperty("margin-left", `${pacman1Pos}px`);
@@ -44,7 +42,6 @@ function loop()
                 opacity > 0?opacity -= 0.005:"";
                 pacman1.style.opacity = opacity;
                 pacman2.style.opacity = opacity;
-                console.log("ymm");
             }
             else
             {

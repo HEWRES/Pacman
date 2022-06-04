@@ -17,7 +17,7 @@ session_start();
     <form method="POST">
         <input type="submit" value="Log out" name="logOut" id="logOut">
     </form>
-    <button class="btn" id="play">Play</button>
+    <a href="levels.php"><button class="btn" id="play">Play</button></a>
     <button class="btn" id="settings" title="Coming soon">Settings</button>
     <button class="btn" id="info">Info</button>
     <script src="animation.js"></script>
