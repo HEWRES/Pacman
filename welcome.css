@@ -35,7 +35,7 @@ button.btn, input#logOut{
     font-size: 35px;
     margin-left: 800px;
 }
-button#play:hover{
+button#play:hover, input#logOut:hover, button#info:hover, button#settings:hover{
     background-color: yellow;
     transition: 0.5s;
 }
@@ -44,20 +44,12 @@ button#play{
 }
 button#settings{
     margin-top: 450px;
-    opacity: 0.4;
-    cursor:auto;
 }
 button#info{
     margin-top: 550px;
-    opacity: 0.4;
-    cursor:auto;
 }
 input#logOut{
     margin-top: 650px;
-}
-input#logOut:hover{
-    background-color: yellow;
-    transition: 0.5s;
 }
 img.pacman{
     width: 125px;
