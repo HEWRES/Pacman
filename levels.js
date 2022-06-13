@@ -1,31 +1,38 @@
-function setup(){
-    let mainDiv = document.createElement("div");
-    var lvl = 1;
-    mainDiv.id = "mainDiv";
-    document.body.appendChild(mainDiv);
-    for(var i = 0; i<2; i++)
-    {
-        for(var j = 0; j<4; j++)
+function request(){
+    var lvl;
+    serverGet("connect.php", {query: "unlocked-levels"}, function(text) {
+        lvl = parseInt(text);
+        setup(lvl);
+    });
+}
+
+function setup(lvl) {
+    let mainDiv = getId("mainDiv");
+
+    for(var i = 1; i <= 6; i++) {
+        let div = document.createElement("div");
+        mainDiv.appendChild(div);
+        if(i <= lvl)
         {
-            let div = document.createElement("div");
-            mainDiv.appendChild(div);
-            if(lvl == 1)
-            {
-                div.className = "levelActive";
-                div.innerHTML = lvl;
-            }
-            else
-            {
-                div.className = "levelDisabled";
-                let img = document.createElement("img");
-                img.src = "images/locked.png";
-                img.id = "locked";
-                div.innerHTML = lvl;
-                div.appendChild(img);
-                console.log("ok");
-            }
-            lvl++;
+            div.className = "levelActive";
+            div.innerHTML = i;
+            div.setAttribute("onclick", `startLevel(${i});`);
+        }
+        else
+        {
+            div.className = "levelDisabled";
+            let img = document.createElement("img");
+            img.src = "images/locked.png";
+            img.className = "locked";
+            div.appendChild(img);
         }
     }
 }
-setup();
+
+function startLevel(index) {
+    serverGet("connect.php", { query: "set-level", level: index}, function(text) {
+        window.location.href = "index.html";
+    });
+}
+
+request();
